@@ -1,0 +1,51 @@
+<div>
+	<mat-toolbar class="head" color=primary>
+		<img class="img-responsive" src="assets/images/Carneiro_Logo.png">
+		<span style="margin: auto" fxHide.gt-sm="true"></span>
+		<a class="toolbar" mat-button href="https://github.com/theRealCarneiro" 
+			target="_blank">
+			{{title}} 
+		</a>
+		<span style="margin: auto"></span>
+		<div fxShow="true" fxHide.lt-md="true">
+			<a class="toolbar" mat-button [routerLink]="'/'" (click)='gitLinkToggle("")'> Home </a>
+			<a class="toolbar" mat-button [routerLink]="'/minlau'" (click)='gitLinkToggle("minlau")'> Minlau </a>
+			<a class="toolbar" mat-button [routerLink]="'/dotfiles'" (click)='gitLinkToggle("dotfiles")'> Dotfiles </a>
+			<a mat-button href="https://github.com/theRealCarneiro/{{gitLink}}" target="_blank">
+				<img src="assets/images/icon-github.svg">
+				GitHub
+			</a>
+			<a mat-icon-button (click)="darkModeToggle()"><mat-icon>{{icon}}</mat-icon></a>
+		</div>
+		<div fxShow="true" fxHide.gt-sm="true">
+				<mat-icon mat-button (click)="sidenav.toggle()">menu</mat-icon> 
+		</div>
+	</mat-toolbar>
+<div>
+
+<mat-sidenav-container fxFlexFill class="example-container">
+	<mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" position="end" 
+		opened="false" fxHide.gt-sm="true">
+		<div fxLayout="column">
+			<a class="toolbar-sidenav" mat-button [routerLink]="'/home'"> Home </a>
+			<a class="toolbar-sidenav" mat-button [routerLink]="'/minlau'"> Minlau </a>
+			<a class="toolbar-sidenav" mat-button [routerLink]="'/dotfiles'"> Dotfiles </a>
+			<a mat-button (click)="darkModeToggle()"><mat-icon>{{icon}}</mat-icon></a>
+		</div>
+	</mat-sidenav>
+
+	<div class="container-fluid">
+		<router-outlet></router-outlet>
+	</div>
+</mat-sidenav-container>
+
+
+<div>
+	<mat-toolbar class="footer" color=primary>
+		<span style="margin: auto"></span>
+			<a mat-button href="https://github.com/theRealCarneiro/{{gitLink}}" target="_blank">
+				<img src="assets/images/icon-github.svg">
+			</a>
+		<span style="margin: auto"></span>
+	</mat-toolbar>
+</div>

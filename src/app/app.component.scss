@@ -1,0 +1,36 @@
+.mat-button:hover{
+  color: #aeb5bb;
+}
+mat-icon-button:hover{
+  color: #aeb5bb;
+}
+
+.head {
+	position: sticky;
+	position: -webkit-sticky;
+	z-index: 1000;
+	top: 0;
+}
+
+h1{
+	padding-top:10px;
+	margin: 0
+}
+
+.toolbar{
+	font-size: 18px;
+}
+
+.toolbar-sidenav{
+	font-size: 25px;
+}
+
+.img-responsive {
+	width: 35px;
+	height: 52px;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}

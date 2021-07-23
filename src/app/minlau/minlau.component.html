@@ -1,0 +1,124 @@
+<div class="center">
+	<div style="overflow: hidden">
+		<h1 id="minlau">Minlau</h1>
+		<p>
+			Minimalist wine game launcher written purely in bash. 
+			<a href="https://github.com/theRealCarneiro">GitHub repository</a>
+		</p>
+
+		<mat-divider></mat-divider>
+
+		<h2 id="features">Features</h2>
+		<li>Fully featured zsh and bash completion script</li>
+		<li>Create and delete wine prefixes</li>
+		<li>Download and install wine builds</li>
+		<li>Download and install dxvk builds</li>
+		<li>Install and uninstall dxvk on wine prefix</li>
+		<li>Launch games</li>
+		<li>Use feral gamemode</li>
+		<li>Configure everything with a config file</li>
+
+		<br>
+		<mat-divider></mat-divider>
+
+		<h2 id="available-commands">Available commands</h2>
+		<table mat-table [dataSource]="dataSourceCommands" class="mat-elevation-z8" width="100%">
+
+			<ng-container matColumnDef="Command">
+				<th class="mat-cell" mat-header-cell *matHeaderCellDef > Command </th>
+				<td mat-cell *matCellDef="let data"> {{data.command}} </td>
+			</ng-container>
+        
+			<ng-container matColumnDef="Description">
+				<th mat-header-cell *matHeaderCellDef > Description </th>
+				<td class="mat-cell" mat-cell *matCellDef="let data"> {{data.description}} </td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumnsCommands"></tr>
+			<tr mat-row *matRowDef="let data; columns: displayedColumnsCommands;"></tr>
+		</table>
+
+		<br>
+		<mat-divider></mat-divider>
+
+		<h2 id="config-file">Config file</h2>
+		<p>
+			The config file is located at <code> $XDG_CONFIG_HOME/minlau/config.ini </code> or <code> $HOME/.config/minlau/config.ini </code> if <code> $XDG_CONFIG_HOME </code> is not set. It will accept any varible you set, so things like <code> DXVK_HUD </code> can also be used.
+		</p>
+
+		<table mat-table [dataSource]="dataSourceIni" class="mat-elevation-z8" width="100%">
+
+			<ng-container matColumnDef="Variable">
+				<th class="mat-cell" mat-header-cell *matHeaderCellDef > Variable </th>
+				<td mat-cell *matCellDef="let data"> {{data.var}} </td>
+			</ng-container>
+        
+			<ng-container matColumnDef="Description">
+				<th mat-header-cell *matHeaderCellDef > Description </th>
+				<td class="mat-cell" mat-cell *matCellDef="let data"> {{data.description}} </td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumnsIni"></tr>
+			<tr mat-row *matRowDef="let data; columns: displayedColumnsIni;"></tr>
+		</table>
+
+		<p>Example <code>config.ini</code>:</p>
+		<mat-card>
+			<textarea highlight-js [options]="{}" [lang]="'ini'">
+[global]
+
+# Wine
+WINE="/usr/bin/wine"
+WINEPREFIX="$XDG_DATA_HOME/wine"
+WINE_INSTALL="$XDG_DATA_HOME/minlau/wine"
+WINEARCH=win64
+WINEESYNC=1
+WINEFSYNC=1
+
+# DXVK
+DXVK_INSTALL="$XDG_DATA_HOME/minlau/dxvk/"
+DXVK_PATH="$XDG_DATA_HOME/lutris/runtime/dxvk/v1.8.1L"
+AUTO_DXVK=1
+DXVK=1
+DXVK_HUD=0
+
+# Misc
+GAMEMODE=1
+MANGOHUD=0
+SANDBOX=1 ;you can use this or the winetricks implementation, this one is faster
+WINETRICKS_SANDBOX=0 
+DISABLE_SCREEN_SAVER=1
+
+; can comment with # or ;
+[foo]
+LAUNCH="$XDG_DATA_HOME/Games/foo/foo.exe" 
+WINE="$XDG_DATA_HOME/lutris/runners/wine/lutris-6.4-x86_64/bin/wine64"
+WINEPREFIX="$XDG_DATA_HOME/Games/wineprefixes/foo"
+DXVK_DLLS='d3d9.dll d3d10core.dll d3d11.dll' #optional
+DXVK_STATE_CACHE=1
+DXVK_STATE_CACHE_PATH=$WINEPREFIX # can use variables declared BEFORE
+			</textarea>
+		</mat-card>
+
+		<br>
+		<mat-divider></mat-divider>
+
+		<h2 id="installation">Installation</h2>
+		<h3 id="archmanjaro">Arch/Manjaro</h3>
+		<p>A package is available in the AUR <a href="https://aur.archlinux.org/packages/minlau-git/">minlau-git</a>. If you use an AUR helper:</p>
+		<mat-card>paru -S minlau-git</mat-card>
+		<h3 id="any-distro">Any distro</h3>
+		<p>Clone the repo and modify the contents of setup.sh to fit your needs, then just run the install script:</p>
+		<mat-card>
+			git clone https://github.com/theRealCarneiro/minlau.git
+			<br>
+			cd minlau
+			<br>
+			chmod +x setup.sh
+			<br>
+			sudo ./setup.sh install
+		</mat-card>
+		<h4 id="uninstall">Uninstall</h4>
+		<mat-card>sudo ./setup.sh uninstall</mat-card>
+	</div>
+</div>
